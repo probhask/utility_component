@@ -1,0 +1,42 @@
+.container {
+  width: 100svw;
+  height: 100svh;
+  padding: 20px 0;
+  overflow: auto;
+
+  .heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgb(80, 79, 79);
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+  }
+
+  .file-tree-wrapper {
+    width: 30vh;
+    min-width: 250px;
+    min-height: 80vh;
+    background-color: #f3f4f6;
+    color: black;
+    overflow: hidden;
+    margin: 1.25rem auto;
+    padding-bottom: 2.5rem;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  .collapsed-root-tree {
+    min-height: 0;
+    padding: 0;
+  }
+}

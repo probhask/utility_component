@@ -1,0 +1,56 @@
+@import "@styles/breakpoint";
+@import "@styles/reuse";
+
+
+.home-wrapper{
+    width: 100vw;
+    height: 100vh;
+    padding: 0.5rem 0;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+    .home-heading{
+        text-transform: uppercase;
+        font-size: 1.55rem;
+        margin-bottom: 2.5rem;
+        text-align: center;
+        font-weight: 700;
+
+        @include md{
+            font-size: 2rem;
+        }
+
+        @include lg{
+            font-size: 2.25rem;
+        }
+    }
+
+    article{
+        margin:  0 auto;
+
+        .navigation-tab-outer{
+            display: flex;
+            justify-content: center;
+
+        .navigation-tab-inner{
+            display: flex;
+            flex-direction: column;
+            gap:0.5rem;
+            color: white;
+            border-radius: 0.25rem;
+            padding: 0.5rem;
+            font-weight: 600;
+
+            a{
+                @include transition-all;
+                background: #000;
+                padding: 0.5rem 0.75rem;
+                border-radius: 0.25rem;
+              
+                &:hover{
+                    transform: scale(1.045);
+                }
+            }
+        }
+        }
+    }
+}
