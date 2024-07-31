@@ -4,7 +4,7 @@ import styles from "./Home.module.scss";
 const utilityTab = [
   { name: "Toast Notification", href: "/toast" },
   { name: "Nested File", href: "/nested-file" },
-  { name: "Modal Notification", href: "/modal" },
+  // { name: "Modal Notification", href: "/modal" },
 ];
 
 const Home = () => {
