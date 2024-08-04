@@ -75,7 +75,10 @@ const FileLayout = ({
   }, []);
 
   return (
-    <div onClick={(e) => e.stopPropagation()} className={styles["fileLayout"]}>
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className={`${styles["fileLayout"]}`}
+    >
       {/* Root Folder */}
       {media.id === "1" && (
         <>

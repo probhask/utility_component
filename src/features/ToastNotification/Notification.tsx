@@ -6,14 +6,13 @@ import {
   AiFillWarning,
   AiOutlineClose,
 } from "react-icons/ai";
-import { Toast_Position, Toast_Type } from "types/toast";
+import { Toast_Position, TOAST_PROPERTIES } from "types/toast";
 import styles from "./Notification.module.scss";
 
 type Props = {
-  position: Toast_Position;
-  type?: Toast_Type;
-  msg?: string;
-  close: () => void;
+  position?: Toast_Position;
+  toastList: TOAST_PROPERTIES[];
+  removeToast: (id: string) => void;
 };
 
 const TOAST_TYPE_DATA: {
@@ -41,22 +40,27 @@ const TOAST_TYPE_DATA: {
   },
 };
 
-const Notification = React.memo(
-  ({ position = "top-center", type = "info", msg, close }: Props) => {
+export const ToastNotification = React.memo(
+  ({ position = "top-center", removeToast, toastList }: Props) => {
     return (
       <div
-        className={`${styles["notification"]} ${styles[position]} ${styles[type]}  `}
+        className={`${styles["notification-container"]} ${styles[position]}`}
       >
-        {/* icon */}
-        <span>{TOAST_TYPE_DATA[type].icon}</span>
-        <span> {msg || TOAST_TYPE_DATA[type].text}</span>
-        <span onClick={close}>
-          <AiOutlineClose />
-        </span>
+        {toastList.map((toast) => (
+          <div
+            key={toast.id}
+            className={`${styles["notification"]}  ${styles[toast.type]}  `}
+          >
+            <span>{TOAST_TYPE_DATA[toast.type].icon}</span>
+            <span> {toast.message || TOAST_TYPE_DATA[toast.type].text}</span>
+            <span onClick={() => removeToast(toast.id)}>
+              <AiOutlineClose />
+            </span>
+          </div>
+        ))}
       </div>
     );
   }
 );
-Notification.displayName = "Notification";
-
-export default Notification;
+ToastNotification.displayName = "ToastNotification";
+export default ToastNotification;
