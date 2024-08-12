@@ -1,7 +1,7 @@
 import { Toast_Position, Toast_Type } from "types/toast";
 import { useState } from "react";
 import style from "./Toast.module.scss";
-import useToast from "@features/ToastNotification/hook/useToast";
+import useToast from "@components/ToastNotification/hook/useToast";
 
 const position_buttons: Toast_Position[] = [
   "top-left",

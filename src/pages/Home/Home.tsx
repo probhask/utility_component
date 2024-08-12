@@ -10,14 +10,14 @@ const utilityTab = [
 const Home = () => {
   return (
     <main className={styles["home-wrapper"]}>
-      <h1 className={styles["home-heading"]}> Utility Componnets</h1>
+      <h1 className={styles["home-heading"]}> Utility Components</h1>
 
       <article className="container">
         <div className={styles["navigation-tab-outer"]}>
           <div className={styles["navigation-tab-inner"]}>
             {utilityTab.map((utilityTabItem, index) => {
               return (
-                <Link to={utilityTabItem.href} key={index + "utilitytab"}>
+                <Link to={utilityTabItem.href} key={index + "utility"}>
                   {utilityTabItem.name}
                 </Link>
               );

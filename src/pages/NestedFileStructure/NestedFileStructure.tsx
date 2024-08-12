@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import FileLayout from "@features/NestedFile/FileLayout";
-import useFileMethod from "@features/NestedFile/hook/useFileMethod";
+import FileLayout from "@components/NestedFile/FileLayout";
+import useFileMethod from "@components/NestedFile/hook/useFileMethod";
 import type { FILe_TYPE, FilesStructure } from "types/nestedFile";
 import styles from "./NestedFileStructure.module.scss";
 
