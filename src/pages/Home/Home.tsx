@@ -12,6 +12,10 @@ const Home = () => {
     <main className={styles["home-wrapper"]}>
       <h1 className={styles["home-heading"]}> Utility Components</h1>
 
+      <h3 className={styles["home-sub-heading"]}>
+        Click to proceed with a component
+      </h3>
+
       <article className="container">
         <div className={styles["navigation-tab-outer"]}>
           <div className={styles["navigation-tab-inner"]}>

@@ -4,6 +4,8 @@ This project is a collection of reusable utility components built in **React** a
 
 [website](https://react-utility-comp.netlify.app/) - https://react-utility-comp.netlify.app/
 
+![Alt text](./images/home.png)
+
 ## Components
 
 1. Toast Notification
@@ -11,7 +13,8 @@ This project is a collection of reusable utility components built in **React** a
 
 ### Toast Notification
 
-It is a lightweight toast component can be used to display notification or messages with following features:
+It is a lightweight toast component can be used to display notification or messages.
+It uses **stack** to store multiple toast automatically disappear after mention time or remove by pressing remove icon.
 
 ![Alt text](./images//toast.png)
 

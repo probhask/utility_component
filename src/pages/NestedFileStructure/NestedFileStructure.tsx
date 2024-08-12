@@ -84,8 +84,7 @@ const NestedFileStructure: React.FC = () => {
   return (
     <section className={styles.container}>
       <div className={styles.heading}>
-        <h1 className="">Nested File Structure</h1>
-        <h3>like VS Code</h3>
+        <h1 className="">Nested File System</h1>
       </div>
 
       <div
