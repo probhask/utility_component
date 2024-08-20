@@ -55,19 +55,59 @@ It is a folder system just like a VS Code Folder Structure with following featur
 6. Expand Folder
 7. Collapse All Folder with Single Click
 
-## TESTING
+## Installation Steps
+
+**Running the project locally with vite**
+
+### Perquisites
+
+Ensures you have
+[Node.js](https://nodejs.org/) and [Git](https://git-scm.com/) installed on your machine. You will also need either [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+## Installation and Setup
+
+**1.Clone the Repository**
+
+Open your terminal and navigate to the directory where you want to clone the project:
+
+```bash
+git clone https://github.com/probhask/utility_component.git
+```
+
+**2. Install Dependencies**
+
+```bash
+npm install
+or
+yarn install
+```
+
+**3. Run the Development Server**
+
+```bash
+npm run dev
+or
+yarn dev
+```
+
+This development server will start, and you should see output indicating the server is running.
+
+**4. Open the Application**
+
+Open your browser and navigate to the local URL provided by Vite development server to view React Application
 
 This project uses **VITEST** for testing the components.
 Vitest is a fast and efficient testing framework, similar to Jest, but optimized to modern JavaScript framework like Vite
 
-### Running Test
-
-To run the test suite, use the following command:
+**5. Run Test**
 
 ```bash
 npm run test
-# or
+or
 yarn test
 ```
 
+```
+
 Vitest will automatically detect and run all test files located in the **test** directory or files ending with .test.tsx.
+```
