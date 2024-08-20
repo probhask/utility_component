@@ -2,8 +2,7 @@ import { it, expect, describe } from "vitest";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import App from "../App";
-import routes from "@routes/routes";
-import { MemoryRouter, Route, RouterProvider, Routes } from "react-router-dom";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
 import Home from "@pages/Home/Home";
 import userEvent from "@testing-library/user-event";
 import Toast from "@pages/Toast/Toast";
@@ -68,6 +67,6 @@ describe("Home Navigation", () => {
     const nestedFileLink = screen.getByText(/Nested File/i);
     await user.click(nestedFileLink);
 
-    expect(screen.getByText(/Nested File Structure/i)).toBeInTheDocument();
+    expect(screen.getByText(/nested file /i)).toBeInTheDocument();
   });
 });

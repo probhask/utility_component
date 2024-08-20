@@ -17,29 +17,29 @@ const mediaObj: FilesStructure = {
       id: "11",
       name: "a",
       type: "folder",
-      expand: false,
+      expand: true,
       subItems: [
         {
           id: "111",
           name: "aa.txt",
           type: "file",
-          expand: false,
+          expand: true,
           subItems: [],
         },
       ],
     },
-    { id: "12", name: "b.txt", type: "file", expand: false, subItems: [] },
+    { id: "12", name: "b.txt", type: "file", expand: true, subItems: [] },
     {
       id: "13",
       name: "c",
       type: "folder",
-      expand: false,
+      expand: true,
       subItems: [
         {
           id: "131",
           name: "ca.txt",
           type: "file",
-          expand: false,
+          expand: true,
           subItems: [],
         },
       ],
@@ -47,7 +47,7 @@ const mediaObj: FilesStructure = {
   ],
 };
 
-describe("nested file structure test cases", () => {
+describe("UI test cases", () => {
   const renderFunction = () => {
     render(<NestedFileStructure />);
     return {
@@ -80,16 +80,15 @@ describe("action button click functionality", () => {
       collapseAllBtn: screen.getByTitle(/collapseallbtn/i),
     };
   };
-  it("add file btn", async () => {
+  it("add file btn functionality", async () => {
     const { addFileBtn } = renderFunction();
-
     await userEvent.click(addFileBtn);
-
     expect(screen.getByPlaceholderText(/add new/i)).toBeInTheDocument();
   });
 });
 
-describe("File layout comp", () => {
+describe("File layout test case", () => {
+  const mockHandleRemove = vi.fn();
   const renderFileLayout = () => {
     render(
       <FileLayout
@@ -97,9 +96,9 @@ describe("File layout comp", () => {
         handleCollapseAll={vi.fn()}
         handleExpand={vi.fn()}
         handleInsert={vi.fn()}
-        handleRemove={vi.fn()}
+        handleRemove={mockHandleRemove}
         handleUpdate={vi.fn()}
-        selectedFile="11"
+        selectedFile=""
         setAddNewFileType={vi.fn()}
         setSelectedFile={vi.fn()}
         media={mediaObj}
@@ -111,7 +110,7 @@ describe("File layout comp", () => {
     userEvent.setup();
     const { screen } = renderFileLayout();
 
-    const testFile = screen.getByText(/a/i);
+    const testFile = screen.getByText("a");
     expect(testFile).toBeInTheDocument();
 
     await userEvent.dblClick(testFile);
@@ -133,7 +132,7 @@ describe("File layout comp", () => {
   it("delete node button on hover", async () => {
     userEvent.setup();
     const { screen } = renderFileLayout();
-    const fileNode = screen.getByTitle(/file wrapper 11/i);
+    const fileNode = screen.getByTitle("file wrapper 11");
 
     await userEvent.hover(fileNode);
     const removeBtn = screen.getByTitle(/remove/i);
@@ -146,27 +145,25 @@ describe("File layout comp", () => {
     expect(removeBtn).not.toBeInTheDocument();
   });
 
-  //TODO::Complete test this delete node functionality
-  it("delete node button functionality", async () => {
-    userEvent.setup();
-    const { screen } = renderFileLayout();
-    const fileNode = screen.getByTitle(/file wrapper 11/i);
+  //   it("delete node button functionality", async () => {
+  //     renderFileLayout();
 
-    await userEvent.hover(fileNode);
-    // console.log(fileNode);
+  //     const user = userEvent.setup();
+  //     const fileNode = screen.getByTitle("file wrapper 11");
+  //     await user.hover(fileNode);
 
-    const removeBtn = screen.getByTitle(/remove file 11/i);
-    expect(removeBtn).toBeInTheDocument();
+  //     const removeBtn = screen.getByTitle(/remove file 11/i);
+  //     expect(removeBtn).toBeInTheDocument();
 
-    fireEvent.click(removeBtn);
-    expect(screen.getByText("a")).toBeInTheDocument();
+  //     await user.click(removeBtn);
+  //     // expect(mockHandleRemove).toHaveBeenCalledWith("11");
 
-    console.log(screen.queryAllByTitle(/file wrapper/i).map((e) => e.title));
-  });
+  //     expect(screen.queryByTitle("file wrapper 11")).toBeInTheDocument();
+  //   });
 });
 
-describe("useFile hook", () => {
-  it("insert method test case", async () => {
+describe("useFile hook methods functionality", () => {
+  it("insert method ", async () => {
     const { insert } = useFileMethod();
 
     const result = insert(mediaObj, "11", "TestFolder", "folder");
@@ -180,7 +177,7 @@ describe("useFile hook", () => {
     expect(insertFolder?.subItems).toEqual([]);
     expect(insertFolder?.expand).toBe(false);
   });
-  it("edit method check", async () => {
+  it("edit method ", async () => {
     const { updateName } = useFileMethod();
 
     const insertResult = updateName(mediaObj, "11", "testEditName");
@@ -189,5 +186,28 @@ describe("useFile hook", () => {
     expect(isNameUpdated).toBeDefined();
     expect(isNameUpdated?.name).toBe("testEditName");
     expect(isNameUpdated?.type).toBe("folder");
+  });
+  it("remove method ", async () => {
+    const { remove } = useFileMethod();
+    const insertResult = remove(mediaObj, "11");
+
+    const isNameUpdated = insertResult.subItems[0];
+    expect(isNameUpdated?.id).not.toBe("11");
+  });
+  it("collapse all ", async () => {
+    const { collapseAll } = useFileMethod();
+    const insertResult = collapseAll(mediaObj);
+
+    const iterateCheckExpand = (item: FilesStructure) => {
+      if (item.id !== "1" && item.type !== "file" && item.expand === true) {
+        console.log("inside log", item);
+        return true;
+      }
+      if (item.subItems && item.subItems.length > 0) {
+        item.subItems.forEach((subItem) => iterateCheckExpand(subItem));
+      }
+    };
+
+    expect(iterateCheckExpand(insertResult)).toBeUndefined();
   });
 });

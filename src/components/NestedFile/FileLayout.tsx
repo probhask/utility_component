@@ -5,7 +5,6 @@ import { FiFilePlus, FiFolderPlus } from "react-icons/fi";
 import { FcFile, FcFolder, FcOpenedFolder } from "react-icons/fc";
 import { VscCollapseAll } from "react-icons/vsc";
 import styles from "./FileLayout.module.scss";
-import { log } from "console";
 
 type Props = {
   media: FilesStructure;
@@ -186,7 +185,7 @@ const FileLayout = ({
                   className={styles["edit-input"]}
                 />
               ) : (
-                <h1 title={`file name ${media.id}`}>{media.name}</h1>
+                <p title={`file name ${media.id}`}>{media.name}</p>
               )}
             </div>
 
